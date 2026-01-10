@@ -6,7 +6,6 @@ import {
   Users,
   FileText,
   Phone,
-  Mail,
   MapPin,
   ChevronRight,
   ArrowRight,
