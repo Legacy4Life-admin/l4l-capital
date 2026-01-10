@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply antialiased bg-cream;
+  }
+
+  ::selection {
+    @apply bg-brass-200 text-midnight-900;
+  }
+}
+
+@layer components {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-midnight-700 via-midnight-600 to-midnight-800;
+  }
+
+  .glass {
+    @apply bg-white/60 backdrop-blur-xl border border-white/30 shadow-lg shadow-midnight-900/5;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-midnight-900 text-cream px-8 py-4 rounded-full text-lg font-medium transition-all duration-300;
+    @apply hover:bg-midnight-800 hover:shadow-xl hover:shadow-midnight-900/20 hover:-translate-y-0.5;
+    @apply active:translate-y-0 active:shadow-lg;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 bg-cream text-midnight-900 px-8 py-4 rounded-full text-lg font-medium transition-all duration-300;
+    @apply border-2 border-midnight-200 hover:border-midnight-400 hover:bg-cream-200;
+  }
+
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 bg-gradient-to-r from-brass-500 to-brass-600 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300;
+    @apply hover:from-brass-400 hover:to-brass-500 hover:shadow-xl hover:shadow-brass-500/30 hover:-translate-y-0.5;
+    @apply active:translate-y-0;
+  }
+
+  /* Grain overlay for texture */
+  .grain-overlay {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    right: -50%;
+    bottom: -50%;
+    width: 200%;
+    height: 200%;
+    background: transparent url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E") repeat;
+    opacity: 0.025;
+    pointer-events: none;
+    z-index: 9999;
+    animation: grain 8s steps(10) infinite;
+  }
+
+  /* Elegant underline animation */
+  .link-underline {
+    @apply relative;
+  }
+
+  .link-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-brass-500 transition-all duration-300;
+  }
+
+  .link-underline:hover::after {
+    @apply w-full;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-cream-200;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-midnight-300 rounded-full;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-midnight-400;
+}
+
+/* Smooth scroll offset for fixed header */
+html {
+  scroll-padding-top: 100px;
+}

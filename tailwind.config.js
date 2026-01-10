@@ -1,0 +1,110 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        cream: {
+          DEFAULT: '#FAF7F2',
+          50: '#FDFCFA',
+          100: '#FAF7F2',
+          200: '#F2EBE0',
+          300: '#E8DCCC',
+        },
+        midnight: {
+          50: '#E8EEF4',
+          100: '#C5D4E3',
+          200: '#9DB5CD',
+          300: '#7595B4',
+          400: '#577D9F',
+          500: '#3A658A',
+          600: '#2E5070',
+          700: '#233D56',
+          800: '#182A3C',
+          900: '#0D1822',
+          950: '#060C11',
+        },
+        brass: {
+          50: '#FDF9F0',
+          100: '#FAF0DB',
+          200: '#F4DDB2',
+          300: '#ECC67F',
+          400: '#E3AC4A',
+          500: '#D4942B',
+          600: '#B87A22',
+          700: '#96611F',
+          800: '#7A4F20',
+          900: '#66421E',
+          950: '#3A220E',
+        },
+        sage: {
+          50: '#F4F7F4',
+          100: '#E5ECE5',
+          200: '#CBD9CC',
+          300: '#A5BEA7',
+          400: '#7A9E7D',
+          500: '#5A805D',
+          600: '#456549',
+          700: '#38513B',
+          800: '#2F4232',
+          900: '#28372B',
+          950: '#131D15',
+        },
+        parchment: {
+          50: '#FEFDFB',
+          100: '#FCF9F3',
+          200: '#F8F1E4',
+          300: '#F1E5D0',
+          400: '#E6D3B4',
+          500: '#D9BE96',
+          600: '#C9A471',
+          700: '#B58B54',
+          800: '#957245',
+          900: '#7A5E3B',
+          950: '#41301E',
+        }
+      },
+      fontFamily: {
+        serif: ['Fraunces', 'Georgia', 'serif'],
+        sans: ['DM Sans', 'system-ui', 'sans-serif'],
+      },
+      animation: {
+        'float': 'float 6s ease-in-out infinite',
+        'float-delayed': 'float 6s ease-in-out 2s infinite',
+        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'shimmer': 'shimmer 3s ease-in-out infinite',
+        'grain': 'grain 8s steps(10) infinite',
+      },
+      keyframes: {
+        float: {
+          '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+          '50%': { transform: 'translateY(-20px) rotate(2deg)' },
+        },
+        shimmer: {
+          '0%, 100%': { opacity: '0.4' },
+          '50%': { opacity: '0.7' },
+        },
+        grain: {
+          '0%, 100%': { transform: 'translate(0, 0)' },
+          '10%': { transform: 'translate(-5%, -10%)' },
+          '20%': { transform: 'translate(-15%, 5%)' },
+          '30%': { transform: 'translate(7%, -25%)' },
+          '40%': { transform: 'translate(-5%, 25%)' },
+          '50%': { transform: 'translate(-15%, 10%)' },
+          '60%': { transform: 'translate(15%, 0%)' },
+          '70%': { transform: 'translate(0%, 15%)' },
+          '80%': { transform: 'translate(3%, 35%)' },
+          '90%': { transform: 'translate(-10%, 10%)' },
+        }
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'noise': "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\")",
+      }
+    },
+  },
+  plugins: [],
+}
