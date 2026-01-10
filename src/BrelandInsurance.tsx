@@ -24,6 +24,20 @@ import {
 // --- Calendly URL ---
 const CALENDLY_URL = "https://calendly.com/melanibreland";
 
+// --- Contact Info ---
+const MELANI_PHONE = "+1 (949) 400-8986";
+const MELANI_PHONE_LINK = "tel:+19494008986";
+const JOHN_PHONE = "(714) 875-5662";
+const JOHN_PHONE_LINK = "tel:+17148755662";
+
+// --- Phone Call Handler ---
+const handlePhoneClick = (e: React.MouseEvent, name: string, phoneLink: string) => {
+  e.preventDefault();
+  if (window.confirm(`Call ${name}?`)) {
+    window.location.href = phoneLink;
+  }
+};
+
 // --- Types ---
 interface Service {
   id: string;
@@ -1038,11 +1052,12 @@ export default function BrelandInsurance() {
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
             <a
-              href="tel:+1234567890"
-              className="inline-flex items-center justify-center gap-2 bg-white/10 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-white/20 transition-colors border border-white/20 backdrop-blur-sm"
+              href={MELANI_PHONE_LINK}
+              onClick={(e) => handlePhoneClick(e, "Melani", MELANI_PHONE_LINK)}
+              className="inline-flex items-center justify-center gap-2 bg-white/10 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-white/20 transition-colors border border-white/20 backdrop-blur-sm cursor-pointer"
             >
               <Phone className="w-5 h-5" />
-              Call Us Directly
+              Call Melani
             </a>
           </div>
         </motion.div>
@@ -1081,13 +1096,27 @@ export default function BrelandInsurance() {
             <div>
               <h4 className="font-semibold text-white mb-6 uppercase tracking-wider text-sm">Get In Touch</h4>
               <div className="space-y-4">
-                <a href="tel:+1234567890" className="flex items-center gap-3 text-midnight-300 hover:text-brass-400 transition-colors">
+                <a
+                  href={MELANI_PHONE_LINK}
+                  onClick={(e) => handlePhoneClick(e, "Melani", MELANI_PHONE_LINK)}
+                  className="flex items-center gap-3 text-midnight-300 hover:text-brass-400 transition-colors cursor-pointer"
+                >
                   <Phone className="w-5 h-5" />
-                  (123) 456-7890
+                  <span>
+                    <span className="text-midnight-400 text-sm">Melani:</span><br />
+                    {MELANI_PHONE}
+                  </span>
                 </a>
-                <a href="mailto:info@brelandinsurance.com" className="flex items-center gap-3 text-midnight-300 hover:text-brass-400 transition-colors">
-                  <Mail className="w-5 h-5" />
-                  info@brelandinsurance.com
+                <a
+                  href={JOHN_PHONE_LINK}
+                  onClick={(e) => handlePhoneClick(e, "John", JOHN_PHONE_LINK)}
+                  className="flex items-center gap-3 text-midnight-300 hover:text-brass-400 transition-colors cursor-pointer"
+                >
+                  <Phone className="w-5 h-5" />
+                  <span>
+                    <span className="text-midnight-400 text-sm">John:</span><br />
+                    {JOHN_PHONE}
+                  </span>
                 </a>
                 <div className="flex items-start gap-3 text-midnight-300">
                   <MapPin className="w-5 h-5 flex-shrink-0 mt-0.5" />
