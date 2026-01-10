@@ -363,21 +363,21 @@ export default function BrelandInsurance() {
       id: "t1",
       quote: "Melani made the whole process so easy. I finally have peace of mind knowing my family is protected. She truly cares about her clients.",
       author: "Margaret T.",
-      location: "Atlanta, GA",
+      location: "Orange County, CA",
       initials: "MT"
     },
     {
       id: "t2",
       quote: "John took the time to explain everything clearly. No pressure, just honest advice and genuine concern for our family's wellbeing.",
       author: "Robert & Linda K.",
-      location: "Marietta, GA",
+      location: "Irvine, CA",
       initials: "RK"
     },
     {
       id: "t3",
       quote: "They helped us set up our wills and life insurance together. It truly felt like one family helping another. Couldn't recommend them more.",
       author: "The Williams Family",
-      location: "Decatur, GA",
+      location: "Anaheim, CA",
       initials: "WF"
     }
   ];
@@ -529,7 +529,7 @@ export default function BrelandInsurance() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sage-500 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-sage-500"></span>
             </span>
-            <span className="text-midnight-700 font-medium text-sm tracking-wide">Serving Georgia Families with Care</span>
+            <span className="text-midnight-700 font-medium text-sm tracking-wide">Serving California Families with Care</span>
           </motion.div>
 
           {/* Main Headline */}
@@ -667,7 +667,7 @@ export default function BrelandInsurance() {
                   We're not just insurance agents—we're neighbors, parents, and community members who understand deeply what it means to protect a family.
                 </p>
                 <p>
-                  With over a decade of experience in the insurance industry, we've helped hundreds of Georgia families find the right coverage at the right price. <strong className="text-midnight-800">No high-pressure sales. No confusing jargon.</strong> Just honest advice from people who genuinely care.
+                  With over a decade of experience in the insurance industry, we've helped hundreds of California families find the right coverage at the right price. <strong className="text-midnight-800">No high-pressure sales. No confusing jargon.</strong> Just honest advice from people who genuinely care.
                 </p>
                 <p className="text-midnight-900 font-medium text-xl font-serif italic">
                   "Because when it comes to your family's future, you deserve someone truly in your corner."
@@ -1078,7 +1078,7 @@ export default function BrelandInsurance() {
                 </div>
               </div>
               <p className="text-midnight-300 text-lg leading-relaxed max-w-md mb-8">
-                Melani and John Breland are licensed insurance professionals dedicated to helping Georgia families find peace of mind through proper planning and protection.
+                Melani and John Breland are licensed insurance professionals dedicated to helping California families find peace of mind through proper planning and protection.
               </p>
               <a
                 href={CALENDLY_URL}
@@ -1119,7 +1119,7 @@ export default function BrelandInsurance() {
                 </a>
                 <div className="flex items-start gap-3 text-midnight-300">
                   <MapPin className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                  <span>Atlanta Metro Area<br />Georgia</span>
+                  <span>Orange County<br />California</span>
                 </div>
               </div>
             </div>
