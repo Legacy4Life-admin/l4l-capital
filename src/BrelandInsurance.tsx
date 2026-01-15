@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'framer-motion';
 import {
   Shield,
@@ -17,7 +18,16 @@ import {
   Sparkles,
   Quote,
   Menu,
-  X
+  X,
+  TrendingUp,
+  Building2,
+  Landmark,
+  GraduationCap,
+  CreditCard,
+  PiggyBank,
+  Briefcase,
+  Umbrella,
+  HeartHandshake
 } from 'lucide-react';
 
 // --- Calendly URL ---
@@ -235,6 +245,292 @@ const FAQItem = ({ question, answer, index }: { question: string; answer: string
   );
 };
 
+// --- Intake Quiz Component ---
+interface QuizAnswers {
+  personal: string[];
+  financial: string[];
+  goals: string[];
+  name: string;
+  email: string;
+  phone: string;
+}
+
+const IntakeQuiz = () => {
+  const [step, setStep] = useState(0);
+  const [answers, setAnswers] = useState<QuizAnswers>({
+    personal: [],
+    financial: [],
+    goals: [],
+    name: '',
+    email: '',
+    phone: ''
+  });
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  const toggleAnswer = (category: 'personal' | 'financial' | 'goals', value: string) => {
+    setAnswers(prev => {
+      const current = prev[category];
+      if (current.includes(value)) {
+        return { ...prev, [category]: current.filter(v => v !== value) };
+      }
+      return { ...prev, [category]: [...current, value] };
+    });
+  };
+
+  const personalOptions = [
+    'Married', 'Solid Career', 'Dissatisfied with Career',
+    'Homeowner', '$50,000+ Income', 'Male',
+    'Children', 'Dissatisfied with Financial Situation', 'Female'
+  ];
+
+  const financialOptions = [
+    '$50,000 - $75,000', '$75,000 - $100,000',
+    '$100,000 - $150,000', '$150,000+'
+  ];
+
+  const goalOptions = [
+    'Tax Advantaged Strategies', 'Wealth Accumulation',
+    'Infinite Banking', 'Asset Protection',
+    'Retirement Planning', 'College Savings',
+    'Debt Management', 'Estate Planning'
+  ];
+
+  const handleSchedule = () => {
+    // Build query params with quiz context
+    const context = [
+      answers.personal.length ? `Profile: ${answers.personal.join(', ')}` : '',
+      answers.financial.length ? `Income: ${answers.financial.join(', ')}` : '',
+      answers.goals.length ? `Goals: ${answers.goals.join(', ')}` : ''
+    ].filter(Boolean).join(' | ');
+
+    // Calendly prefill parameters
+    const params = new URLSearchParams({
+      name: answers.name,
+      email: answers.email,
+      a1: context,
+      a2: answers.phone
+    });
+
+    window.open(`${CALENDLY_URL}?${params.toString()}`, '_blank');
+  };
+
+  const isFormValid = answers.name && answers.email && answers.phone;
+
+  const steps = [
+    {
+      title: "Tell us about yourself",
+      subtitle: "Which of these apply to you?",
+      content: (
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+          {personalOptions.map(option => (
+            <button
+              key={option}
+              onClick={() => toggleAnswer('personal', option)}
+              className={`px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                answers.personal.includes(option)
+                  ? 'bg-teal-500 text-white shadow-lg shadow-teal-500/30'
+                  : 'bg-white/90 text-midnight-700 hover:bg-white hover:shadow-md'
+              }`}
+            >
+              {option}
+            </button>
+          ))}
+        </div>
+      )
+    },
+    {
+      title: "Your income range",
+      subtitle: "This helps us tailor recommendations",
+      content: (
+        <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
+          {financialOptions.map(option => (
+            <button
+              key={option}
+              onClick={() => toggleAnswer('financial', option)}
+              className={`px-6 py-4 rounded-xl font-medium transition-all ${
+                answers.financial.includes(option)
+                  ? 'bg-teal-500 text-white shadow-lg shadow-teal-500/30'
+                  : 'bg-white/90 text-midnight-700 hover:bg-white hover:shadow-md'
+              }`}
+            >
+              {option}
+            </button>
+          ))}
+        </div>
+      )
+    },
+    {
+      title: "What are your goals?",
+      subtitle: "Select all that interest you",
+      content: (
+        <div className="grid grid-cols-2 gap-3 max-w-xl mx-auto">
+          {goalOptions.map(option => (
+            <button
+              key={option}
+              onClick={() => toggleAnswer('goals', option)}
+              className={`px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                answers.goals.includes(option)
+                  ? 'bg-teal-500 text-white shadow-lg shadow-teal-500/30'
+                  : 'bg-white/90 text-midnight-700 hover:bg-white hover:shadow-md'
+              }`}
+            >
+              {option}
+            </button>
+          ))}
+        </div>
+      )
+    },
+    {
+      title: "Almost there!",
+      subtitle: "Enter your info to schedule your free consultation",
+      content: (
+        <div className="max-w-md mx-auto space-y-4">
+          <input
+            type="text"
+            value={answers.name}
+            onChange={(e) => setAnswers(prev => ({ ...prev, name: e.target.value }))}
+            placeholder="Your name"
+            className="w-full px-6 py-4 rounded-xl text-lg bg-white/90 text-midnight-900 placeholder-midnight-400 focus:outline-none focus:ring-2 focus:ring-teal-500"
+          />
+          <input
+            type="email"
+            value={answers.email}
+            onChange={(e) => setAnswers(prev => ({ ...prev, email: e.target.value }))}
+            placeholder="Email address"
+            className="w-full px-6 py-4 rounded-xl text-lg bg-white/90 text-midnight-900 placeholder-midnight-400 focus:outline-none focus:ring-2 focus:ring-teal-500"
+          />
+          <input
+            type="tel"
+            value={answers.phone}
+            onChange={(e) => setAnswers(prev => ({ ...prev, phone: e.target.value }))}
+            placeholder="Phone number"
+            className="w-full px-6 py-4 rounded-xl text-lg bg-white/90 text-midnight-900 placeholder-midnight-400 focus:outline-none focus:ring-2 focus:ring-teal-500"
+          />
+          <div className="bg-white/10 rounded-xl p-4 text-left mt-6">
+            <p className="text-white/80 text-sm mb-2">Your free consultation includes:</p>
+            <ul className="text-white/90 text-sm space-y-1">
+              <li className="flex items-center gap-2">
+                <Check className="w-4 h-4 text-teal-400" /> Financial Education
+              </li>
+              <li className="flex items-center gap-2">
+                <Check className="w-4 h-4 text-teal-400" /> Financial Literacy
+              </li>
+              <li className="flex items-center gap-2">
+                <Check className="w-4 h-4 text-teal-400" /> Personalized Financial Plan
+              </li>
+            </ul>
+            <p className="text-teal-400 font-semibold mt-3 text-lg">100% Complimentary</p>
+          </div>
+        </div>
+      )
+    }
+  ];
+
+  return (
+    <section id="get-started" className="py-24 px-6 bg-gradient-to-br from-midnight-900 via-midnight-950 to-midnight-900 relative overflow-hidden">
+      {/* Background effects */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-teal-500/10 rounded-full blur-[150px]" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-midnight-700/50 rounded-full blur-[100px]" />
+      </div>
+
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, y: 40 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.8 }}
+        className="relative max-w-4xl mx-auto"
+      >
+        {/* Progress indicator */}
+        <div className="flex justify-center gap-2 mb-8">
+          {steps.map((_, i) => (
+            <div
+              key={i}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                i === step ? 'w-8 bg-teal-500' : i < step ? 'w-2 bg-teal-500/50' : 'w-2 bg-white/20'
+              }`}
+            />
+          ))}
+        </div>
+
+        {/* Quiz card */}
+        <div className="bg-midnight-800/50 backdrop-blur-sm rounded-3xl p-8 md:p-12 border border-midnight-700/50">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={step}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3 }}
+              className="text-center"
+            >
+              <h2 className="font-serif text-3xl md:text-4xl text-white mb-3 font-medium">
+                {steps[step].title}
+              </h2>
+              <p className="text-midnight-300 text-lg mb-8">
+                {steps[step].subtitle}
+              </p>
+
+              {steps[step].content}
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Navigation */}
+          <div className="flex justify-between items-center mt-10">
+            <button
+              onClick={() => setStep(s => Math.max(0, s - 1))}
+              className={`px-6 py-3 rounded-full font-medium transition-all ${
+                step === 0
+                  ? 'opacity-0 pointer-events-none'
+                  : 'text-white/70 hover:text-white'
+              }`}
+            >
+              Back
+            </button>
+
+            {step < steps.length - 1 ? (
+              <button
+                onClick={() => setStep(s => s + 1)}
+                className="px-8 py-4 bg-teal-500 text-white rounded-full font-semibold text-lg hover:bg-teal-400 transition-all shadow-lg shadow-teal-500/30 flex items-center gap-2"
+              >
+                Move Ahead
+                <ArrowRight className="w-5 h-5" />
+              </button>
+            ) : (
+              <button
+                onClick={handleSchedule}
+                disabled={!isFormValid}
+                className={`px-8 py-4 rounded-full font-semibold text-lg transition-all flex items-center gap-2 ${
+                  isFormValid
+                    ? 'bg-teal-500 text-white hover:bg-teal-400 shadow-lg shadow-teal-500/30'
+                    : 'bg-midnight-700 text-midnight-400 cursor-not-allowed'
+                }`}
+              >
+                <Calendar className="w-5 h-5" />
+                Schedule Free Consultation
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* Skip option */}
+        <p className="text-center mt-6 text-midnight-400">
+          Want to talk now?{' '}
+          <a
+            href={CALENDLY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-teal-400 hover:text-teal-300 underline"
+          >
+            Skip to scheduling
+          </a>
+        </p>
+      </motion.div>
+    </section>
+  );
+};
+
 // --- Testimonial Card ---
 const TestimonialCard = ({ testimonial, index }: { testimonial: Testimonial; index: number }) => {
   const ref = useRef(null);
@@ -301,60 +597,186 @@ export default function BrelandInsurance() {
 
   const services: Service[] = [
     {
-      id: "final-expense",
-      title: "Final Expense",
-      subtitle: "Peace of Mind",
-      description: "Ensure your loved ones aren't burdened with end-of-life costs. Simple, affordable coverage that provides dignity and relief when it matters most.",
+      id: "tax-advantaged",
+      title: "Tax Advantaged Strategies",
+      subtitle: "Wealth Building",
+      description: "Accumulate wealth and access it 100% tax-free. Strategic financial planning to minimize your tax burden while maximizing growth.",
       features: [
-        "No medical exam required",
-        "Affordable monthly premiums",
-        "Benefits paid within 24-48 hours",
-        "Coverage from $5,000 to $50,000"
+        "Tax-free accumulation",
+        "Tax-free distributions",
+        "Protected from market volatility",
+        "Estate tax benefits"
       ],
-      icon: <Heart className="w-8 h-8 text-white" />,
+      icon: <Landmark className="w-8 h-8 text-white" />,
       accentColor: "bg-gradient-to-r from-midnight-700 to-midnight-900"
     },
     {
-      id: "whole-life",
-      title: "Whole Life",
-      subtitle: "Lifetime Protection",
-      description: "Build cash value while protecting your family. A policy that grows with you and provides guaranteed lifetime coverage for generations.",
+      id: "wealth-accumulation",
+      title: "Wealth Accumulation",
+      subtitle: "Long-Term Growth",
+      description: "Build generational wealth through proven strategies designed to grow your assets steadily over time with professional guidance.",
       features: [
-        "Guaranteed death benefit",
-        "Cash value accumulation",
-        "Fixed premiums for life",
-        "Living benefits available"
+        "Diversified growth strategies",
+        "Risk-adjusted portfolios",
+        "Compound growth potential",
+        "Regular progress reviews"
       ],
-      icon: <Shield className="w-8 h-8 text-white" />,
+      icon: <TrendingUp className="w-8 h-8 text-white" />,
       accentColor: "bg-gradient-to-r from-sage-600 to-sage-700"
     },
     {
-      id: "iul",
-      title: "Index Universal Life",
-      subtitle: "Growth & Protection",
-      description: "Flexible coverage linked to market performance without the downside risk. Your family's protection meets intelligent wealth building.",
+      id: "infinite-banking",
+      title: "Infinite Banking",
+      subtitle: "Be Your Own Bank",
+      description: "Create your own family banking system. Borrow from yourself, pay yourself interest, and build wealth that stays in your family.",
       features: [
-        "Market-linked growth potential",
-        "Downside protection (0% floor)",
-        "Flexible premium payments",
-        "Tax-advantaged cash access"
+        "Become your own banker",
+        "Recapture interest payments",
+        "Tax-advantaged growth",
+        "Generational wealth transfer"
       ],
-      icon: <Sparkles className="w-8 h-8 text-white" />,
+      icon: <Building2 className="w-8 h-8 text-white" />,
       accentColor: "bg-gradient-to-r from-brass-500 to-brass-600"
     },
     {
-      id: "estate",
-      title: "Wills, Trusts & Estate",
-      subtitle: "Legacy Planning",
-      description: "Protect your legacy and ensure your wishes are honored. Comprehensive estate planning to secure your family's future for generations.",
+      id: "asset-protection",
+      title: "Asset Protection",
+      subtitle: "Shield Your Wealth",
+      description: "Protect what you've built from lawsuits, creditors, and unforeseen circumstances with strategic asset protection planning.",
+      features: [
+        "Lawsuit protection",
+        "Creditor protection",
+        "Privacy strategies",
+        "Legal structuring"
+      ],
+      icon: <Shield className="w-8 h-8 text-white" />,
+      accentColor: "bg-gradient-to-r from-parchment-600 to-parchment-700"
+    },
+    {
+      id: "qualified-rollovers",
+      title: "Qualified Plan Rollovers",
+      subtitle: "Retirement Optimization",
+      description: "Optimize your 401(k), IRA, and other qualified plans. Make smart decisions about rollovers to maximize your retirement.",
+      features: [
+        "401(k) rollover guidance",
+        "IRA optimization",
+        "Pension maximization",
+        "Tax-efficient transfers"
+      ],
+      icon: <PiggyBank className="w-8 h-8 text-white" />,
+      accentColor: "bg-gradient-to-r from-midnight-600 to-midnight-800"
+    },
+    {
+      id: "college-funds",
+      title: "College Education Funds",
+      subtitle: "Future Planning",
+      description: "Give your children the gift of education without the burden of debt. Smart savings strategies for college and beyond.",
+      features: [
+        "529 plan strategies",
+        "Education savings accounts",
+        "Scholarship optimization",
+        "Flexible funding options"
+      ],
+      icon: <GraduationCap className="w-8 h-8 text-white" />,
+      accentColor: "bg-gradient-to-r from-sage-500 to-sage-700"
+    },
+    {
+      id: "debt-management",
+      title: "Debt Management",
+      subtitle: "Financial Freedom",
+      description: "Strategic debt elimination to accelerate your path to financial freedom. Get out of debt faster and smarter.",
+      features: [
+        "Debt elimination strategies",
+        "Interest reduction tactics",
+        "Cash flow optimization",
+        "Financial freedom roadmap"
+      ],
+      icon: <CreditCard className="w-8 h-8 text-white" />,
+      accentColor: "bg-gradient-to-r from-brass-600 to-brass-700"
+    },
+    {
+      id: "estate-planning",
+      title: "Estate & Legacy Planning",
+      subtitle: "Protect Your Legacy",
+      description: "Ensure your wishes are honored and your legacy protected. Comprehensive estate planning for peace of mind.",
       features: [
         "Free will preparation",
         "Trust establishment",
-        "Estate planning consultation",
-        "Asset protection strategies"
+        "Estate tax strategies",
+        "Succession planning"
       ],
       icon: <FileText className="w-8 h-8 text-white" />,
-      accentColor: "bg-gradient-to-r from-parchment-600 to-parchment-700"
+      accentColor: "bg-gradient-to-r from-midnight-700 to-midnight-900"
+    },
+    {
+      id: "indexed-growth",
+      title: "Indexed Growth",
+      subtitle: "Market-Linked Returns",
+      description: "Capture market upside with downside protection. Index-linked strategies that grow when markets are up and protect when they're down.",
+      features: [
+        "Market participation",
+        "0% floor protection",
+        "No direct market risk",
+        "Competitive caps"
+      ],
+      icon: <Sparkles className="w-8 h-8 text-white" />,
+      accentColor: "bg-gradient-to-r from-sage-600 to-sage-800"
+    },
+    {
+      id: "retirement",
+      title: "Retirement Accounts",
+      subtitle: "Secure Your Future",
+      description: "Plan for the retirement you deserve. IRA, Roth, and pension strategies tailored to your unique situation.",
+      features: [
+        "IRA & Roth strategies",
+        "Pension optimization",
+        "Income planning",
+        "Social Security timing"
+      ],
+      icon: <Umbrella className="w-8 h-8 text-white" />,
+      accentColor: "bg-gradient-to-r from-parchment-500 to-parchment-700"
+    },
+    {
+      id: "business-strategies",
+      title: "Business Owner Strategies",
+      subtitle: "Entrepreneur Solutions",
+      description: "Specialized strategies for business owners. Protect your business, reduce taxes, and plan your exit strategy.",
+      features: [
+        "Key person insurance",
+        "Buy-sell agreements",
+        "Business succession",
+        "Executive benefits"
+      ],
+      icon: <Briefcase className="w-8 h-8 text-white" />,
+      accentColor: "bg-gradient-to-r from-brass-500 to-brass-700"
+    },
+    {
+      id: "final-expense",
+      title: "Final Expense Strategies",
+      subtitle: "Peace of Mind",
+      description: "Protect your family from end-of-life costs. Simple, affordable coverage that provides dignity and relief.",
+      features: [
+        "No medical exam options",
+        "Affordable premiums",
+        "Quick approval",
+        "Guaranteed acceptance"
+      ],
+      icon: <Heart className="w-8 h-8 text-white" />,
+      accentColor: "bg-gradient-to-r from-midnight-600 to-midnight-900"
+    },
+    {
+      id: "life-insurance",
+      title: "Life Insurance & Living Benefits",
+      subtitle: "Complete Protection",
+      description: "Protection that works for you while you're alive. Access benefits for chronic illness, critical illness, and more.",
+      features: [
+        "Death benefit protection",
+        "Living benefits access",
+        "Chronic illness riders",
+        "Terminal illness benefits"
+      ],
+      icon: <HeartHandshake className="w-8 h-8 text-white" />,
+      accentColor: "bg-gradient-to-r from-sage-500 to-sage-700"
     }
   ];
 
@@ -405,7 +827,7 @@ export default function BrelandInsurance() {
     }
   ];
 
-  const navItems = ['Services', 'About', 'Testimonials', 'FAQ'];
+  const navItems = ['Services', 'About', 'Get Started', 'FAQ'];
 
   return (
     <div className="w-full bg-cream text-midnight-900 font-sans overflow-x-hidden">
@@ -426,7 +848,7 @@ export default function BrelandInsurance() {
             </div>
             <div className="hidden sm:block">
               <span className="font-serif text-xl text-midnight-900 font-semibold tracking-tight">Breland</span>
-              <span className="font-serif text-xl text-midnight-400 italic ml-1">Insurance</span>
+              <span className="font-serif text-xl text-midnight-400 italic ml-1">Financial</span>
             </div>
           </a>
 
@@ -435,8 +857,12 @@ export default function BrelandInsurance() {
             {navItems.map((item) => (
               <a
                 key={item}
-                href={`#${item.toLowerCase()}`}
-                className="text-midnight-600 hover:text-midnight-900 transition-colors font-medium link-underline pb-1"
+                href={`#${item.toLowerCase().replace(' ', '-')}`}
+                className={`transition-colors font-medium pb-1 ${
+                  item === 'Get Started'
+                    ? 'text-teal-600 hover:text-teal-700 font-semibold'
+                    : 'text-midnight-600 hover:text-midnight-900 link-underline'
+                }`}
               >
                 {item}
               </a>
@@ -478,9 +904,13 @@ export default function BrelandInsurance() {
                 {navItems.map((item) => (
                   <a
                     key={item}
-                    href={`#${item.toLowerCase()}`}
+                    href={`#${item.toLowerCase().replace(' ', '-')}`}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="text-midnight-700 hover:text-midnight-900 font-medium text-lg py-2"
+                    className={`font-medium text-lg py-2 ${
+                      item === 'Get Started'
+                        ? 'text-teal-600 font-semibold'
+                        : 'text-midnight-700 hover:text-midnight-900'
+                    }`}
                   >
                     {item}
                   </a>
@@ -539,9 +969,9 @@ export default function BrelandInsurance() {
             transition={{ duration: 0.8, delay: 0.1 }}
             className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight mb-8"
           >
-            <span className="text-midnight-900">Protecting What</span>
+            <span className="text-midnight-900">Building Your</span>
             <br />
-            <span className="italic text-midnight-500 font-light">Matters Most</span>
+            <span className="italic text-midnight-500 font-light">Financial Future</span>
           </motion.h1>
 
           {/* Subheadline */}
@@ -551,8 +981,8 @@ export default function BrelandInsurance() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-xl md:text-2xl text-midnight-600 max-w-2xl mx-auto mb-12 leading-relaxed font-light"
           >
-            Life insurance, final expense coverage, and estate planning—
-            <span className="text-midnight-900 font-medium">with the personal touch your family deserves.</span>
+            Comprehensive financial strategies, wealth building, and legacy planning—
+            <span className="text-midnight-900 font-medium">with the personal guidance your family deserves.</span>
           </motion.p>
 
           {/* CTA Buttons */}
@@ -621,10 +1051,10 @@ export default function BrelandInsurance() {
             className="bg-white rounded-3xl shadow-xl shadow-midnight-900/5 p-8 md:p-12 grid grid-cols-2 md:grid-cols-4 gap-8 border border-midnight-50"
           >
             {[
-              { number: "500+", label: "Families Protected" },
-              { number: "Free", label: "Will Preparation" },
-              { number: "24hr", label: "Claims Support" },
-              { number: "A+", label: "Rated Carriers" },
+              { number: "500+", label: "Families Served" },
+              { number: "Free", label: "Financial Review" },
+              { number: "24hr", label: "Client Support" },
+              { number: "A+", label: "Rated Partners" },
             ].map((stat, i) => (
               <motion.div
                 key={i}
@@ -654,7 +1084,7 @@ export default function BrelandInsurance() {
               transition={{ duration: 0.8 }}
             >
               <span className="inline-block text-brass-600 font-semibold uppercase tracking-[0.2em] text-sm mb-6">
-                Your Trusted Partners
+                Our Mission
               </span>
 
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-midnight-900 mb-8 leading-[1.1] font-medium">
@@ -664,13 +1094,13 @@ export default function BrelandInsurance() {
 
               <div className="space-y-5 text-midnight-600 text-lg leading-relaxed">
                 <p>
-                  We're not just insurance agents—we're neighbors, parents, and community members who understand deeply what it means to protect a family.
+                  We're on a mission to pull back the curtain on the financial system. The wealthy have used these strategies for generations—<strong className="text-midnight-800">and we believe everyone deserves access to the same knowledge.</strong>
                 </p>
                 <p>
-                  With over a decade of experience in the insurance industry, we've helped hundreds of California families find the right coverage at the right price. <strong className="text-midnight-800">No high-pressure sales. No confusing jargon.</strong> Just honest advice from people who genuinely care.
+                  Most people are never taught how money really works. Banks, taxes, retirement accounts—the system is complex by design. We're here to simplify it, showing you the strategies that can help you build wealth, protect your family, and keep more of what you earn.
                 </p>
                 <p className="text-midnight-900 font-medium text-xl font-serif italic">
-                  "Because when it comes to your family's future, you deserve someone truly in your corner."
+                  "Financial literacy isn't a privilege—it's a right. We're here to make sure you have it."
                 </p>
               </div>
 
@@ -686,7 +1116,7 @@ export default function BrelandInsurance() {
                 </div>
                 <div>
                   <div className="font-serif text-xl text-midnight-900 font-medium">Melani & John Breland</div>
-                  <div className="text-midnight-500">Licensed Insurance Advisors</div>
+                  <div className="text-midnight-500">Licensed Financial Consultants</div>
                 </div>
               </div>
 
@@ -757,7 +1187,7 @@ export default function BrelandInsurance() {
                 {/* Bottom quote overlay */}
                 <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-midnight-900/95 via-midnight-900/80 to-transparent">
                   <p className="text-white/95 font-serif text-2xl italic font-light">
-                    "One family protecting another."
+                    "Knowledge is wealth."
                   </p>
                 </div>
               </div>
@@ -777,47 +1207,53 @@ export default function BrelandInsurance() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-20"
+            className="text-center mb-16"
           >
             <span className="inline-block text-brass-600 font-semibold uppercase tracking-[0.2em] text-sm mb-6">
               What We Offer
             </span>
             <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-midnight-900 mb-6 font-medium">
-              Coverage For{' '}
-              <span className="italic text-midnight-500 font-light">Every Stage</span>
+              Building Your{' '}
+              <span className="italic text-midnight-500 font-light">Financial Future</span>
             </h2>
             <p className="text-midnight-600 text-xl max-w-2xl mx-auto leading-relaxed">
-              From protecting your family today to planning for generations ahead—comprehensive solutions tailored to your unique needs.
+              Comprehensive financial strategies tailored to your unique goals—from wealth building to legacy planning.
             </p>
           </motion.div>
 
-          {/* Services Grid */}
-          <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-            {services.map((service, index) => (
-              <ServiceCard key={service.id} service={service} index={index} />
-            ))}
+          {/* Services Grid - Show only first 3 */}
+          <div className="relative">
+            <div className="grid md:grid-cols-3 gap-6">
+              {services.slice(0, 3).map((service, index) => (
+                <ServiceCard key={service.id} service={service} index={index} />
+              ))}
+            </div>
+
+            {/* Fade overlay at bottom */}
+            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-cream-200 via-cream-200/80 to-transparent pointer-events-none" />
           </div>
 
-          {/* Bottom CTA */}
+          {/* See All Services CTA */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mt-16"
+            className="text-center mt-8"
           >
-            <p className="text-midnight-600 mb-6">Not sure which coverage is right for you?</p>
-            <a
-              href={CALENDLY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary"
+            <p className="text-midnight-500 mb-4 text-sm">We offer 13+ financial services</p>
+            <Link
+              to="/services"
+              className="inline-flex items-center gap-3 bg-midnight-900 text-cream px-8 py-4 rounded-full hover:bg-midnight-800 transition-all shadow-lg shadow-midnight-900/20 hover:shadow-xl font-semibold text-lg group"
             >
-              <Phone className="w-5 h-5" />
-              Let's Talk - It's Free
-            </a>
+              See Everything We Do
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
           </motion.div>
         </div>
       </section>
+
+      {/* --- Interactive Quiz Section --- */}
+      <IntakeQuiz />
 
       {/* --- Why Choose Us Section --- */}
       <section className="py-24 px-6 bg-midnight-950 text-cream relative overflow-hidden">
@@ -1074,11 +1510,11 @@ export default function BrelandInsurance() {
                 </div>
                 <div>
                   <span className="font-serif text-2xl text-white font-semibold">Breland</span>
-                  <span className="font-serif text-2xl text-midnight-400 italic ml-2">Insurance</span>
+                  <span className="font-serif text-2xl text-midnight-400 italic ml-2">Financial</span>
                 </div>
               </div>
               <p className="text-midnight-300 text-lg leading-relaxed max-w-md mb-8">
-                Melani and John Breland are licensed insurance professionals dedicated to helping California families find peace of mind through proper planning and protection.
+                Melani and John Breland are licensed financial consultants dedicated to helping California families build wealth and secure their financial future.
               </p>
               <a
                 href={CALENDLY_URL}
@@ -1128,7 +1564,7 @@ export default function BrelandInsurance() {
             <div>
               <h4 className="font-semibold text-white mb-6 uppercase tracking-wider text-sm">Our Services</h4>
               <ul className="space-y-3">
-                {['Final Expense Insurance', 'Whole Life Insurance', 'Index Universal Life', 'Free Will Preparation', 'Trust & Estate Planning'].map((item) => (
+                {['Tax Advantaged Strategies', 'Wealth Accumulation', 'Infinite Banking'].map((item) => (
                   <li key={item}>
                     <a href="#services" className="text-midnight-300 hover:text-brass-400 transition-colors flex items-center gap-2 group">
                       <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -1136,6 +1572,12 @@ export default function BrelandInsurance() {
                     </a>
                   </li>
                 ))}
+                <li>
+                  <Link to="/services" className="text-brass-400 hover:text-brass-300 transition-colors flex items-center gap-2 group font-medium">
+                    <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    See All 13+ Services
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
@@ -1143,11 +1585,11 @@ export default function BrelandInsurance() {
           {/* Bottom bar */}
           <div className="pt-8 border-t border-midnight-800 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-midnight-500 text-sm">
-              © {new Date().getFullYear()} Breland Family Insurance. All rights reserved.
+              © {new Date().getFullYear()} Breland Financial. All rights reserved.
             </p>
             <p className="text-midnight-600 text-xs max-w-xl text-center md:text-right">
-              Insurance products offered through licensed carriers. Coverage and availability may vary by state.
-              Melani Breland and John Breland are licensed insurance agents.
+              Financial products and insurance offered through licensed carriers. Services and availability may vary by state.
+              Melani Breland and John Breland are licensed financial professionals.
             </p>
           </div>
         </div>
