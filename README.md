@@ -1,6 +1,8 @@
-# Breland Family Insurance Website
+# L4L Capital | Legacy 4 Life
 
-A premium, professionally designed website for Melani and John Breland's insurance business, specializing in final expense insurance, life insurance, and estate planning services.
+A premium, professionally designed website for L4L Capital - helping families build generational wealth through tax-advantaged strategies, retirement planning, life insurance, and estate planning.
+
+**Built by [Gain AI](https://gainai.co)**
 
 ## Features
 
@@ -10,13 +12,16 @@ A premium, professionally designed website for Melani and John Breland's insuran
 - **Modern Stack**: React 18, TypeScript, Tailwind CSS, Framer Motion
 - **Performance Optimized**: Lightweight, fast-loading with smooth animations
 
-## Services Highlighted
+## Services
 
-- Final Expense Insurance
-- Whole Life Insurance
-- Index Universal Life (IUL)
-- Free Will Preparation
-- Trust & Estate Planning
+- Tax Advantaged Strategies
+- Wealth Accumulation
+- Infinite Banking
+- Asset Protection
+- Retirement Planning
+- Estate & Legacy Planning
+- Life Insurance & Living Benefits
+- Final Expense Strategies
 
 ## Quick Start
 
@@ -34,40 +39,6 @@ npm run build
 npm run preview
 ```
 
-## Deployment to Vercel
-
-1. Push this repo to GitHub
-2. Import the repository in Vercel
-3. Vercel will auto-detect the Vite configuration
-4. Deploy!
-
-Or use the Vercel CLI:
-```bash
-npx vercel
-```
-
-## Customization
-
-### Update Contact Info
-Edit `src/BrelandInsurance.tsx`:
-- Phone number in footer and CTA sections
-- Email address
-- Physical location
-
-### Update Calendly Link
-The Calendly URL is defined at the top of `src/BrelandInsurance.tsx`:
-```tsx
-const CALENDLY_URL = "https://calendly.com/melanibreland";
-```
-
-### Colors
-Tailwind configuration is in `tailwind.config.js` with custom color palettes:
-- `midnight` - Deep navy blues
-- `brass` - Warm golds
-- `sage` - Muted greens
-- `cream` - Warm off-whites
-- `parchment` - Warm tans
-
 ## Tech Stack
 
 - [React 18](https://react.dev/)
@@ -77,6 +48,12 @@ Tailwind configuration is in `tailwind.config.js` with custom color palettes:
 - [Framer Motion](https://www.framer.com/motion/)
 - [Lucide Icons](https://lucide.dev/)
 
-## License
+## Deployment
 
-Private - Breland Family Insurance
+This site is deployed on [Vercel](https://vercel.com) with automatic deployments on push to main.
+
+**Live Site**: [l4lcapital.com](https://l4lcapital.com)
+
+---
+
+*Built with care by [Gain AI](https://gainai.co)*
