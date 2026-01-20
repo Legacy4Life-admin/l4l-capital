@@ -327,8 +327,8 @@ export default function ServicesPage() {
               <Shield className="w-5 h-5 text-brass-400" />
             </div>
             <div>
-              <span className="font-serif text-xl text-midnight-900 font-semibold tracking-tight">Breland</span>
-              <span className="font-serif text-xl text-midnight-400 italic ml-1">Financial</span>
+              <span className="font-serif text-xl text-midnight-900 font-semibold tracking-tight">L4L</span>
+              <span className="font-serif text-xl text-midnight-400 italic ml-1">Capital</span>
             </div>
           </Link>
 
@@ -433,12 +433,12 @@ export default function ServicesPage() {
                   <Shield className="w-6 h-6 text-brass-400" />
                 </div>
                 <div>
-                  <span className="font-serif text-2xl text-white font-semibold">Breland</span>
-                  <span className="font-serif text-2xl text-midnight-400 italic ml-2">Financial</span>
+                  <span className="font-serif text-2xl text-white font-semibold">L4L</span>
+                  <span className="font-serif text-2xl text-midnight-400 italic ml-2">Capital</span>
                 </div>
               </div>
               <p className="text-midnight-300 leading-relaxed mb-6">
-                Helping California families build wealth and secure their financial future.
+                Building legacies that last for life. Helping families secure generational wealth.
               </p>
               <Link
                 to="/"
@@ -504,7 +504,7 @@ export default function ServicesPage() {
           {/* Bottom bar */}
           <div className="pt-8 border-t border-midnight-800 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-midnight-500 text-sm">
-              © {new Date().getFullYear()} Breland Financial. All rights reserved.
+              © {new Date().getFullYear()} L4L Capital | Legacy 4 Life LLC. All rights reserved.
             </p>
             <p className="text-midnight-600 text-xs max-w-xl text-center md:text-right">
               Financial products and insurance offered through licensed carriers. Services and availability may vary by state.

@@ -847,8 +847,8 @@ export default function BrelandInsurance() {
               <Shield className="w-5 h-5 text-brass-400" />
             </div>
             <div className="hidden sm:block">
-              <span className="font-serif text-xl text-midnight-900 font-semibold tracking-tight">Breland</span>
-              <span className="font-serif text-xl text-midnight-400 italic ml-1">Financial</span>
+              <span className="font-serif text-xl text-midnight-900 font-semibold tracking-tight">L4L</span>
+              <span className="font-serif text-xl text-midnight-400 italic ml-1">Capital</span>
             </div>
           </a>
 
@@ -959,7 +959,7 @@ export default function BrelandInsurance() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sage-500 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-sage-500"></span>
             </span>
-            <span className="text-midnight-700 font-medium text-sm tracking-wide">Serving California Families with Care</span>
+            <span className="text-midnight-700 font-medium text-sm tracking-wide">Building Legacies That Last For Life</span>
           </motion.div>
 
           {/* Main Headline */}
@@ -969,9 +969,9 @@ export default function BrelandInsurance() {
             transition={{ duration: 0.8, delay: 0.1 }}
             className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight mb-8"
           >
-            <span className="text-midnight-900">Building Your</span>
+            <span className="text-midnight-900">Your Legacy,</span>
             <br />
-            <span className="italic text-midnight-500 font-light">Financial Future</span>
+            <span className="italic text-midnight-500 font-light">Your Future</span>
           </motion.h1>
 
           {/* Subheadline */}
@@ -981,8 +981,8 @@ export default function BrelandInsurance() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-xl md:text-2xl text-midnight-600 max-w-2xl mx-auto mb-12 leading-relaxed font-light"
           >
-            Comprehensive financial strategies, wealth building, and legacy planning—
-            <span className="text-midnight-900 font-medium">with the personal guidance your family deserves.</span>
+            Build generational wealth, protect what matters, and create a lasting legacy—
+            <span className="text-midnight-900 font-medium">with strategies designed for life.</span>
           </motion.p>
 
           {/* CTA Buttons */}
@@ -1088,8 +1088,8 @@ export default function BrelandInsurance() {
               </span>
 
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-midnight-900 mb-8 leading-[1.1] font-medium">
-                Meet Melani & John{' '}
-                <span className="italic text-midnight-500 font-light">Breland</span>
+                Meet the{' '}
+                <span className="italic text-midnight-500 font-light">L4L Team</span>
               </h2>
 
               <div className="space-y-5 text-midnight-600 text-lg leading-relaxed">
@@ -1115,8 +1115,8 @@ export default function BrelandInsurance() {
                   </div>
                 </div>
                 <div>
-                  <div className="font-serif text-xl text-midnight-900 font-medium">Melani & John Breland</div>
-                  <div className="text-midnight-500">Licensed Financial Consultants</div>
+                  <div className="font-serif text-xl text-midnight-900 font-medium">Melani & John</div>
+                  <div className="text-midnight-500">L4L Capital | Licensed Consultants</div>
                 </div>
               </div>
 
@@ -1272,7 +1272,7 @@ export default function BrelandInsurance() {
               viewport={{ once: true }}
             >
               <span className="inline-block text-brass-400 font-semibold uppercase tracking-[0.2em] text-sm mb-6">
-                The Breland Difference
+                The L4L Difference
               </span>
               <h2 className="font-serif text-4xl md:text-5xl text-white mb-10 leading-[1.1] font-medium">
                 Why Families{' '}
@@ -1509,12 +1509,12 @@ export default function BrelandInsurance() {
                   <Shield className="w-6 h-6 text-brass-400" />
                 </div>
                 <div>
-                  <span className="font-serif text-2xl text-white font-semibold">Breland</span>
-                  <span className="font-serif text-2xl text-midnight-400 italic ml-2">Financial</span>
+                  <span className="font-serif text-2xl text-white font-semibold">L4L</span>
+                  <span className="font-serif text-2xl text-midnight-400 italic ml-2">Capital</span>
                 </div>
               </div>
               <p className="text-midnight-300 text-lg leading-relaxed max-w-md mb-8">
-                Melani and John Breland are licensed financial consultants dedicated to helping California families build wealth and secure their financial future.
+                L4L Capital is dedicated to helping families build generational wealth, protect their legacy, and secure their financial future.
               </p>
               <a
                 href={CALENDLY_URL}
@@ -1585,11 +1585,11 @@ export default function BrelandInsurance() {
           {/* Bottom bar */}
           <div className="pt-8 border-t border-midnight-800 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-midnight-500 text-sm">
-              © {new Date().getFullYear()} Breland Financial. All rights reserved.
+              © {new Date().getFullYear()} L4L Capital | Legacy 4 Life LLC. All rights reserved.
             </p>
             <p className="text-midnight-600 text-xs max-w-xl text-center md:text-right">
               Financial products and insurance offered through licensed carriers. Services and availability may vary by state.
-              Melani Breland and John Breland are licensed financial professionals.
+              L4L Capital representatives are licensed financial professionals.
             </p>
           </div>
         </div>
