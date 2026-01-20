@@ -1089,7 +1089,7 @@ export default function BrelandInsurance() {
 
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-midnight-900 mb-8 leading-[1.1] font-medium">
                 Meet the{' '}
-                <span className="italic text-midnight-500 font-light">L4L Team</span>
+                <span className="italic text-midnight-500 font-light">Legacy Team</span>
               </h2>
 
               <div className="space-y-5 text-midnight-600 text-lg leading-relaxed">
