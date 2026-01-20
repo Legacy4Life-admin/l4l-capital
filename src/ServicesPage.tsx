@@ -327,8 +327,8 @@ export default function ServicesPage() {
               <Shield className="w-5 h-5 text-brass-400" />
             </div>
             <div>
-              <span className="font-serif text-xl text-midnight-900 font-semibold tracking-tight">L4L</span>
-              <span className="font-serif text-xl text-midnight-400 italic ml-1">Capital</span>
+              <span className="font-serif text-xl text-midnight-900 font-semibold tracking-tight">Legacy</span>
+              <span className="font-serif text-xl text-midnight-400 italic ml-1">4 Life</span>
             </div>
           </Link>
 
@@ -433,8 +433,8 @@ export default function ServicesPage() {
                   <Shield className="w-6 h-6 text-brass-400" />
                 </div>
                 <div>
-                  <span className="font-serif text-2xl text-white font-semibold">L4L</span>
-                  <span className="font-serif text-2xl text-midnight-400 italic ml-2">Capital</span>
+                  <span className="font-serif text-2xl text-white font-semibold">Legacy</span>
+                  <span className="font-serif text-2xl text-midnight-400 italic ml-2">4 Life</span>
                 </div>
               </div>
               <p className="text-midnight-300 leading-relaxed mb-6">
