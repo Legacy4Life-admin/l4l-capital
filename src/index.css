@@ -40,6 +40,54 @@
     @apply inline-flex items-center justify-center gap-2 bg-gradient-to-r from-brass-500 to-brass-600 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300;
     @apply hover:from-brass-400 hover:to-brass-500 hover:shadow-xl hover:shadow-brass-500/30 hover:-translate-y-0.5;
     @apply active:translate-y-0;
+    position: relative;
+    overflow: visible;
+  }
+
+  .btn-gold::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 9999px;
+    background: conic-gradient(
+      from var(--glow-angle, 0deg),
+      transparent 0%,
+      transparent 30%,
+      #d4a853 45%,
+      #f5d78e 50%,
+      #fff8dc 52%,
+      #f5d78e 55%,
+      #d4a853 60%,
+      transparent 75%,
+      transparent 100%
+    );
+    animation: glow-trace 2.5s linear infinite;
+    z-index: -1;
+    opacity: 0.9;
+  }
+
+  .btn-gold::after {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    border-radius: 9999px;
+    background: linear-gradient(to right, #b8860b, #cd9b1d);
+    z-index: -1;
+  }
+
+  @property --glow-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  @keyframes glow-trace {
+    from {
+      --glow-angle: 0deg;
+    }
+    to {
+      --glow-angle: 360deg;
+    }
   }
 
   /* Grain overlay for texture */
