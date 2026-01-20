@@ -37,56 +37,57 @@
   }
 
   .btn-gold {
-    @apply inline-flex items-center justify-center gap-2 bg-gradient-to-r from-brass-500 to-brass-600 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300;
-    @apply hover:from-brass-400 hover:to-brass-500 hover:shadow-xl hover:shadow-brass-500/30 hover:-translate-y-0.5;
+    @apply inline-flex items-center justify-center gap-2 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300;
+    @apply hover:shadow-xl hover:shadow-brass-500/30 hover:-translate-y-0.5;
     @apply active:translate-y-0;
     position: relative;
-    overflow: visible;
+    background: linear-gradient(to right, #b8860b, #cd9b1d);
+    z-index: 1;
   }
 
-  .btn-gold::before {
+  .btn-gold-wrapper {
+    position: relative;
+    display: inline-block;
+    border-radius: 9999px;
+    padding: 3px;
+    overflow: hidden;
+  }
+
+  .btn-gold-wrapper::before {
     content: '';
     position: absolute;
-    inset: -3px;
-    border-radius: 9999px;
+    inset: 0;
     background: conic-gradient(
-      from var(--glow-angle, 0deg),
+      from 0deg,
       transparent 0%,
-      transparent 30%,
-      #d4a853 45%,
-      #f5d78e 50%,
-      #fff8dc 52%,
+      transparent 25%,
+      #d4a853 35%,
+      #f5d78e 45%,
+      #fffacd 50%,
       #f5d78e 55%,
-      #d4a853 60%,
+      #d4a853 65%,
       transparent 75%,
       transparent 100%
     );
-    animation: glow-trace 2.5s linear infinite;
-    z-index: -1;
-    opacity: 0.9;
+    animation: glow-spin 2s linear infinite;
+    border-radius: 9999px;
   }
 
-  .btn-gold::after {
+  .btn-gold-wrapper::after {
     content: '';
     position: absolute;
-    inset: 1px;
-    border-radius: 9999px;
+    inset: 3px;
     background: linear-gradient(to right, #b8860b, #cd9b1d);
-    z-index: -1;
+    border-radius: 9999px;
+    z-index: 0;
   }
 
-  @property --glow-angle {
-    syntax: '<angle>';
-    initial-value: 0deg;
-    inherits: false;
-  }
-
-  @keyframes glow-trace {
+  @keyframes glow-spin {
     from {
-      --glow-angle: 0deg;
+      transform: rotate(0deg);
     }
     to {
-      --glow-angle: 360deg;
+      transform: rotate(360deg);
     }
   }
 

@@ -992,16 +992,18 @@ export default function BrelandInsurance() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <a
-              href={CALENDLY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-gold group"
-            >
-              <Calendar className="w-5 h-5" />
-              Schedule Free Consultation
-              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-            </a>
+            <div className="btn-gold-wrapper">
+              <a
+                href={CALENDLY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-gold group"
+              >
+                <Calendar className="w-5 h-5" />
+                Schedule Free Consultation
+                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              </a>
+            </div>
             <a
               href="#services"
               className="btn-secondary"
@@ -1355,15 +1357,17 @@ export default function BrelandInsurance() {
                     Schedule your free, no-obligation consultation. We'll help you find the perfect coverage for your family.
                   </p>
 
-                  <a
-                    href={CALENDLY_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-gold w-full justify-center text-lg"
-                  >
-                    <Calendar className="w-5 h-5" />
-                    Book Your Free Consultation
-                  </a>
+                  <div className="btn-gold-wrapper w-full">
+                    <a
+                      href={CALENDLY_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-gold w-full justify-center text-lg"
+                    >
+                      <Calendar className="w-5 h-5" />
+                      Book Your Free Consultation
+                    </a>
+                  </div>
 
                   <p className="mt-6 text-midnight-400 text-sm">
                     No credit card required. 100% free, 100% helpful.
@@ -1476,16 +1480,18 @@ export default function BrelandInsurance() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href={CALENDLY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-gold text-lg group"
-            >
-              <Calendar className="w-5 h-5" />
-              Schedule Free Consultation
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </a>
+            <div className="btn-gold-wrapper">
+              <a
+                href={CALENDLY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-gold text-lg group"
+              >
+                <Calendar className="w-5 h-5" />
+                Schedule Free Consultation
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </div>
             <a
               href={MELANI_PHONE_LINK}
               onClick={(e) => handlePhoneClick(e, "Melani", MELANI_PHONE_LINK)}
