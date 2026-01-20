@@ -1051,7 +1051,7 @@ export default function BrelandInsurance() {
             className="bg-white rounded-3xl shadow-xl shadow-midnight-900/5 p-8 md:p-12 grid grid-cols-2 md:grid-cols-4 gap-8 border border-midnight-50"
           >
             {[
-              { number: "500+", label: "Families Served" },
+              { number: "100+", label: "Families Served" },
               { number: "Free", label: "Financial Review" },
               { number: "24hr", label: "Client Support" },
               { number: "A+", label: "Rated Partners" },
