@@ -1119,7 +1119,7 @@ export default function BrelandInsurance() {
                   </div>
                   <div className="relative group">
                     <div className="w-28 h-28 rounded-full border-4 border-brass-400 shadow-xl overflow-hidden ring-4 ring-brass-100 transition-transform group-hover:scale-105">
-                      <img src="/john.jpg" alt="John Breland" className="w-full h-full object-cover object-top" />
+                      <img src="/john.jpg" alt="John Breland" className="w-full h-full object-cover object-[center_20%]" />
                     </div>
                     <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-midnight-800 text-cream px-3 py-1 rounded-full text-sm font-medium shadow-md">
                       John
