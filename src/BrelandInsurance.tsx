@@ -1107,18 +1107,28 @@ export default function BrelandInsurance() {
               </div>
 
               {/* Team avatars */}
-              <div className="mt-10 flex items-center gap-6">
-                <div className="flex -space-x-4">
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-midnight-600 to-midnight-800 border-4 border-cream flex items-center justify-center text-cream font-serif text-xl font-medium shadow-lg">
-                    M
+              <div className="mt-12 flex flex-col sm:flex-row items-center gap-8">
+                <div className="flex gap-4">
+                  <div className="relative group">
+                    <div className="w-28 h-28 rounded-full border-4 border-brass-400 shadow-xl overflow-hidden ring-4 ring-brass-100 transition-transform group-hover:scale-105">
+                      <img src="/melani.jpg" alt="Melani Breland" className="w-full h-full object-cover object-top" />
+                    </div>
+                    <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-midnight-800 text-cream px-3 py-1 rounded-full text-sm font-medium shadow-md">
+                      Melani
+                    </div>
                   </div>
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-brass-500 to-brass-700 border-4 border-cream flex items-center justify-center text-white font-serif text-xl font-medium shadow-lg">
-                    J
+                  <div className="relative group">
+                    <div className="w-28 h-28 rounded-full border-4 border-brass-400 shadow-xl overflow-hidden ring-4 ring-brass-100 transition-transform group-hover:scale-105">
+                      <img src="/john.jpg" alt="John Breland" className="w-full h-full object-cover object-top" />
+                    </div>
+                    <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-midnight-800 text-cream px-3 py-1 rounded-full text-sm font-medium shadow-md">
+                      John
+                    </div>
                   </div>
                 </div>
-                <div>
-                  <div className="font-serif text-xl text-midnight-900 font-medium">Melani & John</div>
-                  <div className="text-midnight-500">L4L Capital | Licensed Consultants</div>
+                <div className="text-center sm:text-left">
+                  <div className="font-serif text-2xl text-midnight-900 font-medium">Your Legacy Partners</div>
+                  <div className="text-midnight-500 text-lg">L4L Capital | Licensed Consultants</div>
                 </div>
               </div>
 
